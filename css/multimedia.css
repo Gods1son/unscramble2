@@ -1,0 +1,381 @@
+body{
+    overflow-y: auto;
+    background: #F3F0F7;
+}
+
+.multBut{
+    color: white;
+    background: #4299e3;
+    margin-top: 10px;
+    font-weight: 600;
+    transform: skewX(-10deg);
+    border-radius: 0;
+    letter-spacing: 1px;
+}
+
+.darkBack .multBut
+{
+	box-shadow: 2px 2px 0px 0px #07072a;
+}
+
+.hole{
+    background: white;
+    width: 90%;
+    margin: auto;
+    border-radius: 5px;
+    border: 1px solid #258DFF;
+    padding: 5px 10px;
+    box-shadow: 0px 1px 3px 0px #258DFF;
+}
+
+#boardSpans span{
+    font-weight: bold;
+    margin: 2px;
+    color: black;
+}
+
+#invitationModal .modal-content{
+    margin-top:10vh;
+}
+
+#boardSpans .progress{
+    height: 100%;
+    position: absolute;
+    width: 51%;
+    z-index: -1;
+    background: white;
+    border-radius: 0;
+    max-width: 100%;
+}
+
+.innerB{
+    color:black;
+}
+
+.innerB span{
+    background: transparent;
+    padding: 0;
+    font-size: 1.2em;
+}
+
+.borders{
+    /*border:1px solid #5600ff;*/
+}
+
+.col-56{
+    width: 100%;
+    position: relative;
+}
+
+.col-56-2{
+    right: 0;
+    position: absolute;
+}
+
+#allusergames span{
+    font-size: 1.2em;
+    margin: 2px;
+}
+
+.darkTheme #showAllGames span, .darkTheme .sentText,.darkTheme #overallscores span{
+    color:white;
+}
+
+
+.name{
+    margin-right:5px !important;
+    margin-left:5px !important;
+}
+
+.darkBack .name{
+    color:white;
+}
+
+.eachScore{
+    margin:10px 0px;
+    border-bottom:2px solid darkgrey;
+    padding-bottom:10px
+}
+
+.eachRowIns
+{
+	padding: 7px 0;
+}
+
+.eachScore:first-of-type{
+    border-top:2px solid darkgrey;
+    padding-top:10px;
+}
+
+#boardSpans .score{
+        padding: 2px 5px;
+    color: black;
+    background: white;
+}
+
+ #allusergames .prevScore{
+    border: 1px groove #258DFF;
+    padding: 3px 5px;
+    color: #258DFF;
+    border-radius: 5px;
+    /*box-shadow: 0px 1px 4px 0px grey;*/
+}
+
+ #overallscores .prevScore{
+    border: 3px solid #258DFF;
+}
+
+#prevWords{
+    /*box-shadow: 0px 1px 4px 0px grey;*/
+}
+
+.alphass{
+    width: 10vw;
+    margin: 5px 3px;
+        font-size: 1.1em;
+        font-weight: 900;
+        cursor: pointer;
+        text-align: center;
+        padding: 3px 10px;
+        color: white;
+        background: #5600ff;
+}
+
+.alphass.clicked
+{
+	color: darkgrey;
+    background-color: whitesmoke;
+    border-color: #e8f7fc;
+    opacity: 1;
+    box-shadow: 0px 0.5px 2px 0.3px;	
+}
+
+div.disabled
+{
+	opacity:0.7;
+	pointer-events: none;	
+}
+
+.darkBack .alphass
+{
+	box-shadow: 1px 1px 0px 1px #07072a;
+}
+
+.specBut{
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0px 1px 3px 0px grey;
+    color: white;
+    margin: 0px 5px;
+}
+
+hr{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 5px ridge rgba(0,0,0,.1);
+}
+
+#typer{
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #5600ff;
+    text-align: center;
+    color: #5600ff;
+    font-size: 1.5em;
+    font-weight: 700;
+    height: 1.5em;
+    letter-spacing: 1px;
+    background: transparent;
+}
+
+.warn{
+    font-size: 0.85em;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.screen{
+    margin-top:2rem;
+}
+
+#showUsername, #playScreen{
+    color: #5600ff; /*#258DFF;*/
+}
+
+.darkTheme #showUsername, .darkTheme #playScreen{
+    color: #258DFF;
+}
+
+#alphas{
+    position: absolute;
+    /*bottom: -200px;*/
+    left: 0;
+}
+
+.shiftUpRight{
+    position: absolute;
+    right: 0;
+}
+
+.butHelpPar{
+    position: absolute;
+    right: 0;
+    color: black;
+    top:0;
+}
+
+#keyboardText{
+    border: 2px solid #5600ff;
+    background: #5600ff;
+    color: white;
+    letter-spacing: 1px;
+    font-weight: 700;
+    transform: skewX(-8deg);
+    display: none;
+}
+
+.hiddenCont{
+    width: 90%;
+    margin-left: 5%;
+    padding: 0 5px;
+    height: 60vh;
+    display: none;
+    position: absolute;
+    overflow-y: scroll;
+    border: 2px solid #258DFF;
+    left: 0;
+    background: white;
+    z-index: 2;
+    border-radius: 10px;
+    color:black;
+}
+
+#theWord{
+        background: transparent;
+    border-radius: 7px;
+    bottom: 0;
+    color: #5600ff;
+    font-weight: 700;
+    /*font-size: 1.2em;*/
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+.cong2{
+    vertical-align: middle;
+}
+
+.noty{
+    position: fixed;
+    top: 50%;
+    width: 100%;
+    overflow: auto;
+    z-index: 5;
+    box-shadow: 2px 2px 0px 1px black;
+    display: none;
+}
+
+#connected{
+    padding: 2px 10px;
+}
+
+#playWithOnline{
+	transform: skewX(-10deg);
+    border-radius: 0;
+}
+
+.notyInner{
+    width: 100%;
+    margin: auto;
+    padding: 10px 0;
+    border-radius: 5px;
+    font-weight: 600;
+    color: white;
+    font-size: 1.2em;
+}
+
+.myjumbo{
+    margin-bottom: 0.5rem !important;
+}
+
+#menu{
+    float: left;
+    color: #FF3864;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.pasts{
+    padding: 2px 5px;
+    border-bottom: 1px solid #258DFF;
+}
+
+#usernameModal .modal-body, #invitationModal .modal-body{
+    background: #07072a;
+    color: white;
+}
+
+#outsideBar{
+    width: 90%;
+    margin: 0 auto 5px;
+    height: 10px;
+    border: 1px solid #258DFF;
+    border-radius: 5px;
+}
+
+#innerBar{
+    width: 100%;
+    height: 100%;
+    background: #007bff;
+    border-radius: 5px;
+}
+
+.blink_me {
+  animation: blinker 1s linear;
+  color:red;
+}
+
+.goBackBut h4{
+    color: #FF3864;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+#YourWordsScreen, #allusergames{
+    /*margin-top:-25px;*/
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .specBut
+        font-size: 1em;
+    }
+     #theWord{
+        height: 90%;
+        font-size: 1.3em;
+    }
+    .alphass, #prevWords{
+        /*margin: 5px 7px;
+        font-size: 1.0em;*/
+        font-weight: 800;
+    }
+}
+
+@media only screen and (min-width: 370px) and (max-width: 767px) {
+  body{
+    font-size: 1.25em;
+  }
+    .specBut{
+        font-size: 1em;
+    }
+   
+}

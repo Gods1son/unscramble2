@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget
+        id="com.edjufun.unscramble2"
+        version="1.0.9"
+        xmlns="http://www.w3.org/ns/widgets"
+        xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Unscramble</name>
+    <description>
+        Unscramble words, use synonyms as a guide
+    </description>
+    <author email="tolulopeibiyode@gmail.com" href="#">
+        Gods1son
+    </author>
+    <content src="index.html" />
+	
+    <preference name="phonegap-version" value="cli-8.1.1" />
+    <preference name='pgb-builder-version' value='2' />
+    <preference name="android-minSdkVersion" value="19"/>
+    <preference name="android-targetSdkVersion" value="28" /> 
+    <preference name="android-build-tool" value="gradle" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="orientation" value="portrait" />
+    <icon height="48" src="android-icon-48x482.png" width="48"/>
+    <icon height="48" platform="android" src="android-icon-48x482.png" width="48"/>
+    <!--<icon height="48" platform="ios" src="android-icon-48x482.png" width="48"/>-->
+    <icon height="48" platform="windows" src="android-icon-48x482.png" width="48"/>
+    <plugin name="cordova-plugin-dialogs" source="npm"/>
+	<plugin name="cordova-plugin-local-notification" source="npm"/>
+	<plugin name="cordova-plugin-x-socialsharing" source="npm" spec="5.4.7"/>
+    <plugin name="cordova-plugin-whitelist" source="npm"/>
+    <plugin name="cordova-plugin-appminimize" source="npm"/>
+    <plugin name="cordova-plugin-customurlscheme" source="npm">
+        <param name="URL_SCHEME" value="edjufununscramble" />
+    </plugin>  
+    
+    
+<!-- iPhone / iPod Touch -->
+<icon src="icon/ios/Icon-40.png" platform="ios" width="40" height="40" />
+<icon src="icon/ios/Icon-48.png" platform="ios" width="48" height="48" />
+<icon src="icon/ios/Icon-57.png" platform="ios" width="57" height="57" />
+<icon src="icon/ios/Icon-120.png" platform="ios" width="120" height="120" />
+<icon src="icon/ios/Icon-114.png" platform="ios" width="114" height="114" />
+<icon height="48" platform="ios" src="icon/ios/Icon-48.png" width="48"/>
+<!-- iPad -->
+<icon src="icon/ios/Icon-72.png" platform="ios" width="72" height="72" />
+<icon src="icon/ios/Icon-76.png" platform="ios" width="76" height="76" />
+<icon src="icon/ios/Icon-144.png" platform="ios" width="144" height="144" />
+<icon src="icon/ios/Icon-152.png" platform="ios" width="152" height="152" />
+
+<!-- iPhone Spotlight and Settings Icon -->
+<icon src="icon/ios/Icon-29.png" platform="ios" width="29" height="29" />
+<icon src="icon/ios/Icon-58.png" platform="ios" width="58" height="58" />
+<icon src="icon/ios/Icon-1024.png" platform="ios" width="1024" height="1024" />
+    
+    <splash src="icon/ios/Icon-58.png" />
+
+    <allow-navigation href="https://chat202.herokuapp.com" />
+    <allow-navigation href="https://chat202.herokuapp.com*" />
+    <allow-navigation href="https://chat202.herokuapp.com/*" />
+    <access origin="*" subdomains="true" />
+    <access origin="https://chat202.herokuapp.com*"/>
+    <access origin="https://chat202.herokuapp.com"/>
+</widget>

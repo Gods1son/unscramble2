@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <title>Unscramble</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/driverjs.js"></script>
+    
+
+    <!--<script src="fontawesome/fontawesome.min.js"></script>-->
+    <script src="js/json.js"></script>
+    <!--<script src="js/th_en_US_new.js"></script>-->
+    <script src="js/game.js"></script>
+    <script src="js/joint.js"></script>
+    <script src="js/anime.min.js"></script>
+    <script src="cordova.js"></script>
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/driverjs.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/game.css">
+    <link rel="stylesheet" type="text/css" href="css/joint.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    
+    </head>
+      
+<body>
+    <button type="button" id="showModal" class="btn-primary d-none" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="width: 90vw;max-width: 100vw;margin-left: 5vw;">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+            <div class="bg-triangle-T" style="z-index:0;"></div>
+            <div class="bg-triangle-T" style="left: 50%;z-index:0;"></div>
+            <div class="bg-triangle-B" style="z-index:0;"></div>
+            <div class="bg-triangle-B" style="left: 50%;z-index:0;"></div>
+          <div class="row">
+              <div class="ribbon-wrapper"><div class="glow">&nbsp;</div>
+		<div class="ribbon-front">
+    <div class="ribbon-front-inner">Excellent!</div>
+              <div class="ribbon-edge-topleft"></div>
+		      <div class="ribbon-edge-topright"></div>
+		      <div class="ribbon-edge-bottomleft"></div>
+		      <div class="ribbon-edge-bottomright"></div>
+		</div>
+		
+	</div>
+            
+            <div class="text-center newCoins col-12">
+                <span id="coinNew" class="text-right coinNew pt-1">
+                    <i class="fas fa-coins darkorange pl-2"></i>
+                    <span class="wonCoins pr-2">0</span>
+                </span>
+            </div>
+        </div>
+          
+        <div class="thumbsPar">
+            <!--<div class="thumbs rounded-circle">
+                <i class="fas fa-thumbs-up winLogo"></i></div>-->
+             <div class="gifHolder one">
+                <img class="gif" src="rays-main.png"/>
+            </div>
+            <div class="gifHolder">
+                <img class="gif" src="yaaay.gif"/>
+            </div>
+            <!--<div class="sunburst"></div>-->
+        </div>
+          
+        <div class="corrPar" id="corrAnswer">
+            
+        </div>
+        
+        <!--<div class="text-center mt-3">
+            <button type="button" class="btn contBut" onclick="hideWin()">CONTINUE</button>
+        </div>-->
+      </div>
+
+    </div>
+  </div>
+</div>
+    
+    <div id="settingsPage">
+        <div class="bg-triangle-T" style="width: 100%;"></div>
+        <div class="bg-triangle-B" style="width: 100%;"></div>
+            <div class="settingsSpan" id="settingsHeader">
+                <span>Settings</span>
+                <div id="closeSettings" onclick="toggleSettings()"><i>&lt;&lt; Close &lt;&lt;</i></div>
+            </div>
+            
+        <div class="settingsLine text-center mt-3">
+            <button class="tour" onclick="generateTourGame();">Game Walkthrough</button>
+        </div>
+        
+             <div class="settingsLine row mt-3">
+                <div class="col-8"><span class="settingsTag">Dark Theme</span></div>
+                <div class="col-4 text-right">
+                     <label class="switch" id="switchLight">
+                        <input type="checkbox" id="checkLight"/>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="settingsLine row mt-3">
+                <div class="col-8"><span class="settingsTag">Skip Passed</span></div>
+                <div class="col-4 text-right">
+                    <label class="switch" id="switchPassed">
+                        <input type="checkbox" id="checkPassed"/>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="settingsLine row mt-3">
+                <div class="col-8"><span class="settingsTag">Sound</span></div>
+                <div class="col-4 text-right">
+                    <label class="switch" id="switchSound">
+                        <input type="checkbox" id="checkSound"/>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        
+        <div class="settingsLine bottomSettingsLine row mt-3">
+            <div class="settingsTag col-12">Please share</div>
+        <div class="col-12 share">
+                    <!--<div class="table">
+                        <div class="table-cell middleHeight">-->
+                            <i class="fab fa-facebook-square text-primary" onclick="window.plugins.socialsharing.shareViaFacebook('Check out this unscramble game, so much fun to play', null, 'https://gods1son.github.io')"></i>
+                            <i class="fab fa-instagram text-danger" onclick="window.plugins.socialsharing.shareViaInstagram('Check out this unscramble game, so much fun to play', null , 'https://gods1son.github.io')"></i>
+                            <i class="fab fa-whatsapp-square text-success" onclick="window.plugins.socialsharing.shareViaWhatsApp('Check out this unscramble game, so much fun to play', null , 'https://gods1son.github.io')"></i>
+                            <i class="fab fa-twitter-square text-info" onclick="window.plugins.socialsharing.shareViaTwitter('Check out this unscramble game, so much fun to play', null , 'https://gods1son.github.io')"></i>
+                            <i class="fas fa-sms text-light" onclick="window.plugins.socialsharing.shareViaSMS('Check out this unscramble game, so much fun to play https://gods1son.github.io', null, null, null)"></i>
+                       <!-- </div>
+                    </div>-->
+                </div>
+        </div>
+            <!--<div class="bottomSettingsLine">
+            
+                <button class="resetGame" onclick="generateTour();">Show me how</button> 
+            </div>-->
+            
+        </div>
+    
+    <div class="container-fluid position-relative header">
+			<div class="text-center">
+				<div class="" id="logoHead">Unscramble</div>
+			</div>
+        
+			<div class="container-fluid headB blue pl-2 pr-2">
+             <div class="text-left float-left" id="menuBar" style="position: relative;" onclick="toggleSettings()">
+                    <i class="fas fa-bars"></i>
+					<i class="fas fa-home" style="color: #FF3864;" onclick="goHome()"></i>
+			</div>
+            
+            <div class="text-right float-right theCoins">
+                <div class="text-right coinNew">
+                    <i class="fas fa-coins darkorange"></i>
+                    <span class="chalk getCoins">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <div id="mainContent" class="pt-1">
+    <div class="bg-triangle-L"></div>
+	<div class="container-fluid theLetters">
+		<div class="jumbotron myjumbo darkBck">
+			<div class="row eachRowIns .letterCount">
+				<div class="col-12 text-center">
+					<div class="pageText">Number of letters in word</div>
+                    <div class="mt-1">
+								<div class="leftBut rounded-circle arrows btn"><i class="fas fa-minus"></i></div>
+								<!--<span class="arrows leftBut"><i class="fas fa-minus"></i></span>-->
+								<span class="number wordsNumber">3</span>
+								<!--<span class="arrows rightBut"><i class="fas fa-plus"></i></span>-->
+								<div class="rightBut rounded-circle arrows btn"><i class="fas fa-plus"></i></div>
+							</div>
+                    <!--counter-->
+								<div class="text-center tracker">
+									<span id="curr" class="chalk"></span>
+									<span class="chalk"> of </span>         
+									<span id="maxLevel" class="chalk"></span>
+								</div>
+								<!--counter-->
+							
+						</div> 
+			</div>
+		</div>
+	</div>
+
+    <!--possible synonyms-->
+	<div class="container-fluid">
+		<div class="jumbotron myjumbo jumboBorderless">
+			<div class="row eachRowIns">
+				<div class="col-12 text-center pl-0 pr-0">
+					<span class="bigPageText">Possible Clues</span>
+					
+					<div id="synonyms">        
+						
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--possible synonyms-->
+
+	<!--word to unscramble-->
+	<div class="container-fluid theLetters">
+		<div class="jumbotron myjumbo">
+			<div class="row eachRowIns text-center">
+				<div class="chalk pl-1 pr-1" style="width:100%;">
+					<div class="pageText">Word to unscramble</div>
+                    
+
+					<div id="theWord22" class="imp mr-2 mb-2 position-relative">
+                    <!--<div class="box" style=""></div>-->
+                        <div id="theWord" class="imp mr-2 mb-2"></div>
+                    <!--<div class="box2" style=""></div>-->
+					</div>
+                    
+                    <div class="pageText">Your Answer</div>
+					<div id="yourWord" class="imp"></div>
+                        
+                    <div class="text-center mt-1 mb-1 position-relative">
+					<div class="text-center butHelp">
+						<button type="button" class="btn butCent" id="prev" onclick="prev()">
+							<i class="fas fa-backward"></i>
+						</button>
+					</div>
+                    
+                    
+					<div class="text-center butHelp">
+						<button type="button" class="btn butCent butCentBig text-primary" id="shuff" onclick="shuffling()">
+							<i class="fas fa-random"></i>
+						</button>
+					</div>
+
+					<div class="text-center butHelp">
+						<button type="button" class="btn butCent" id="next" onclick="next(false)">
+							<i class="fas fa-forward"></i>
+						</button>
+					</div>
+                        
+                        <div class="text-center butHelp butHelpPar">
+                        <!--<span style="font-size: 0.8em;">Use Help - 50</span>-->
+						<button class="btn btn-danger butCentHelp bg-light" onclick="clue()">
+							<i class="fas fa-coins text-danger"></i>
+						</button>
+					</div>
+                </div>
+				
+			</div>
+		</div>
+	</div>
+	<!--word to unscramble-->
+
+		<!--your answer-->
+	<!--<div class="container-fluid theSame">
+		<div class="jumbotron myjumbo">
+			<div class="row eachRowIns">
+				<div class="col-12 text-center">
+					<div class="pageText">Your Answer</div>
+					<div id="yourWord" class="imp">
+                    
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>-->
+	<!--your answer-->
+
+	<!--buttons-->
+        <!--<div class="container mt-1 theSame theControls">
+            <div class="row theControlsChild">
+                <div class="col-12 text-center">
+					<div class="text-center butHelp">
+						<button type="button" class="btn rounded-circle butCent" id="prev" onclick="prev()">
+							<i class="fas fa-backward"></i>
+						</button>
+					</div>
+                    
+                    
+					<div class="text-center butHelp">
+						<button type="button" class="btn rounded-circle butCent butCentBig" id="shuff" onclick="shuffling()">
+							<i class="fas fa-random"></i>
+						</button>
+					</div>
+
+					<div class="text-center butHelp">
+						<button type="button" class="btn rounded-circle butCent" id="next" onclick="next(false)">
+							<i class="fas fa-forward"></i>
+						</button>
+					</div>
+                </div>
+            </div>
+        </div>-->
+        
+        <!--buttons-->
+		
+        <div id="buttonPar" class="text-center theButtons">
+            <div id="buttons">
+            
+            </div>
+        </div>
+        </div>
+    </div>
+<audio src="sounds/correct.mp3" class="d-none" id="rightSound"></audio>
+<audio src="sounds/wrongg.mp3" class="d-none" id="wrongSound"></audio>
+<audio src="sounds/click.mp3" class="d-none" id="clickSound"></audio>
+    
+</body>
+</html>

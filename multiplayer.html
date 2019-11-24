@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--<meta http-equiv="Content-Security-Policy" content="script-src * 'unsafe-inline'; connect-src * ">-->
+    <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <title>Unscramble</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/driverjs.js"></script>
+    <script src="js/anime.min.js"></script>
+    <script src="cordova.js"></script>
+    <!--<script src="fontawesome/fontawesome.min.js"></script>-->
+    <script src="js/joint.js"></script>
+    <!--<script src="http://chat202.herokuapp.com/socket.io/socket.io.js"></script>-->
+    <!--<script src="http://localhost:3000/socket.io/socket.io.js"></script>-->
+    <script type="text/javascript" src="js/socket.io.js"></script>
+    <script src="js/multiplayer.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/driverjs.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/game.css">
+    <link rel="stylesheet" type="text/css" href="css/multimedia.css">
+    <link rel="stylesheet" type="text/css" href="css/joint.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    
+    </head>
+      
+<body>
+    <button type="button" id="showUsernameModal" class="btn-primary d-none" data-toggle="modal" data-target="#usernameModal">
+        Launch demo modal
+    </button>
+    
+    <!-- collect username-->
+    <div class="modal fade" id="usernameModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+              <div class="row">
+                <div class="text-center col-12"><h3>Enter Username</h3></div>
+              </div>
+          
+            <div class="row mt-3">
+                <div class="text-center col-12">
+                    <input type="text" class="form-control" id="enterUsername">
+                </div>
+            </div>
+          
+            <div class="row mt-3">
+                
+                <div class="text-center col-12">
+                    <div id="warning" class="text-center text-danger font-weight-bold d-none">Please enter a username</div>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success chooseUsername" onclick="setUsername()">Choose</button>
+                    <button type="button" class="btn btn-success d-none updateUsername" onclick="updateUsername()">Update</button>
+                </div>
+              </div>
+         
+      </div>
+
+    </div>
+  </div>
+</div>
+    <!-- collect username-->
+    
+    
+    <!-- show invitaition-->
+    <button type="button" id="showInvitationModal" class="btn-primary d-none" data-toggle="modal" data-target="#invitationModal">
+        Launch demo modal
+    </button>
+    
+    <div class="modal fade" id="invitationModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+              <div class="row">
+                <div class="text-center col-12"><h3>Invitation to play</h3></div>
+              </div>
+          
+            <div class="row mt-3">
+                <div class="text-center col-12">
+                    <h4>Invitation from:</h4><br>
+                    <h3 id="invitationFrom"></h3>
+                </div>
+            </div>
+          
+            <div class="row mt-3">
+                
+                <div class="text-center col-12">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="rejectInvitation()">Deny</button>
+                    <button type="button" class="btn btn-success" onclick="acceptInvitation()">Accept/Play</button>
+                </div>
+              </div>
+         
+      </div>
+
+    </div>
+  </div>
+</div>
+    <!-- show invitaition-->
+    
+    <div id="settingsPage">
+            <div class="settingsSpan" id="settingsHeader">
+                <span>Settings</span>
+                <div id="closeSettings" onclick="toggleSettings()"><i>&lt;&lt; Close &lt;&lt;</i></div>
+            </div>
+            
+        <div id="changeUsernamePar" class="settingsLine text-center mt-3 d-none">
+            <button class="tour" onclick="changeUsername();">Change Username</button>
+        </div>
+        
+             <div class="settingsLine row mt-3">
+                <div class="col-8"><span class="settingsTag">Dark Theme</span></div>
+                <div class="col-4 text-right">
+                     <label class="switch" id="switchLight">
+                        <input type="checkbox" id="checkLight">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="settingsLine row mt-3">
+                <div class="col-8"><span class="settingsTag">Skip Passed</span></div>
+                <div class="col-4 text-right">
+                    <label class="switch" id="switchPassed">
+                        <input type="checkbox" id="checkPassed">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        
+            <div class="settingsLine row mt-3">
+                <div class="col-8"><span class="settingsTag">Sound</span></div>
+                <div class="col-4 text-right">
+                    <label class="switch" id="switchSound">
+                        <input type="checkbox" id="checkSound">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            
+        <div class="settingsLine bottomSettingsLine row mt-3">
+            <div class="settingsTag col-12">Please share</div>
+        <div class="col-12 share">
+                    <!--<div class="table">
+                        <div class="table-cell middleHeight">-->
+                            <i class="fab fa-facebook-square text-primary" onclick="window.plugins.socialsharing.shareViaFacebook('Check out this unscramble game, so much fun to play', null, 'https://gods1son.github.io')"></i>
+                            <i class="fab fa-instagram text-danger" onclick="window.plugins.socialsharing.shareViaInstagram('Check out this unscramble game, so much fun to play', null , 'https://gods1son.github.io')"></i>
+                            <i class="fab fa-whatsapp-square text-success" onclick="window.plugins.socialsharing.shareViaWhatsApp('Check out this unscramble game, so much fun to play', null , 'https://gods1son.github.io')"></i>
+                            <i class="fab fa-twitter-square text-info" onclick="window.plugins.socialsharing.shareViaTwitter('Check out this unscramble game, so much fun to play', null , 'https://gods1son.github.io')"></i>
+                            <i class="fas fa-sms text-light" onclick="window.plugins.socialsharing.shareViaSMS('Check out this unscramble game, so much fun to play https://gods1son.github.io', null, null, null)"></i>
+
+                       <!-- </div>
+                    </div>-->
+                </div>
+        </div>
+            <!--<div class="bottomSettingsLine">
+            
+                <button class="resetGame" onclick="generateTour2();">Show me how</button>
+            </div>-->
+            
+        </div>
+    
+    <div class="container-fluid position-relative header">
+        <div class="text-center">
+            <div class="" id="logoHead">Unscramble</div>
+        </div>
+        
+        <div class="container-fluid headB blue">
+            <div class="text-left float-left" id="menuBar">
+                <i class="fas fa-bars" style="font-size: 1.3em;" onclick="toggleSettings()"></i>
+                <i class="fas fa-home" style="font-size: 1.3em;color: #FF3864;" onclick="goHome2()"></i>
+            </div>
+            
+            <div class="text-right float-right">
+                <div id="coinNew" class="text-right">
+                    <i class="fas fa-coins darkorange"></i>
+                    <span class="chalk getCoins">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="mainContentM" class="m">
+        <div class="bg-triangle-L"></div>
+        <div id="menu" class="ml-3 d-none" onclick="deleteRoom()">MENU</div>
+        <div class="row shiftUpRight">
+            <div class="col-12 text-center" style="z-index: -1;">
+                <span id="connected" class="text-center text-white mb-1 bg-success">Connecting... <i class="fas fa-circle-notch fa-spin"></i></span>
+                <span id="showUsername" class="text-left ml-1 mr-2 font-weight-bold"></span>
+            </div>
+        </div>
+        
+        <!--<div id="showUsername" class="d-none text-right mr-3 font-weight-bold"></div>
+        <div id="connected" class="text-center bg-secondary text-white mb-1">Connecting... <i class="fas fa-circle-notch fa-spin"></i></div>-->
+        <div class="noty bg-success">
+            <div class="notyInner text-center">Word Sent</div>
+        </div>
+        <input type="hidden" id="username">
+        
+        <div class="table screen mt-3 pt-3" id="theBtnHolders">
+            <div class="table-cell text-center">
+                <div><div id="findOnline" class="btn multBut btn-lg" onclick="playOnline()">Play Online</div></div>
+                <div><div class="btn multBut btn-lg" onclick="showGroupRoom()">Create Group Game</div></div>
+                <!--<div><div class="btn multBut btn-lg" onclick="showShare()">Invite Friend</div></div>
+                    <div id="inviteButtons" class="d-none share mt-2 hole">
+                            <i class="fab fa-facebook-square text-primary" data-type="fb"></i>
+                            <i class="fab fa-instagram text-danger" data-type="ig"></i>
+                            <i class="fab fa-whatsapp-square text-success" data-type="whatsapp"></i>
+                            <i class="fab fa-twitter-square text-info" data-type="twitter"></i>
+                            <i class="fas fa-sms text-dark" data-type="sms"></i>
+                    </div>-->
+                
+                
+                <div><div class="btn multBut btn-lg" onclick="showJoin();">Join Group</div></div>
+                <div id="joinPar" class="d-none share mt-2 hole text-center">
+                    <div>Enter Group Name</div>
+                    <input type="text" class="form-control" id="groupName">
+                    <div class="btn btn-success btn-sm mt-1" onclick="acceptFriendInvitation()">Join Group</div>
+                </div>
+            
+                <div><div class="btn multBut btn-lg" id="yourSentWords" onclick="getAllSentWords();">View All Sent Words</div></div>
+                
+                <div><div class="btn multBut btn-lg" id="yourPastGames" onclick="getAllScores();">Score History</div></div>
+            </div>
+        
+        </div>
+        
+        <div id="playScreen" class="d-none text-center table screen">
+            <div class="table-cell">
+                <div class="text-left pl-1 goBackBut">
+                    <h4 onclick="returnToButtons()">&lt; Back</h4>
+                </div>
+                <div><h4>Play with:</h4></div>
+                <div><h3 id="playWith"></h3></div>
+                <div style="width: 80%;margin: auto;"><button id="playWithOnline" onclick="playUser()" class="btn btn-success btn-lg btn-block">Play with User.</button></div>
+            </div>
+        </div>
+        
+        <div id="YourWordsScreen" class="d-none text-center table screen">
+            <div id="alluserwords" class="d-none housing">
+                <div class="text-left pl-1 goBackBut">
+                    <h4 onclick="returnToButtons()">&lt; Back</h4>
+                </div>
+                <div class="sentText"><h3>Your Sent Words:</h3></div>
+                <table id="wordsSent">
+                    <tr class="noDelete">
+                        <th>Words</th>
+                        <th>Number of times</th>
+                    </tr>
+                </table>
+            </div>
+            
+            <div id="allusergames" class="d-none housing">
+                <div class="text-left pl-1 goBackBut">
+                    <h4 onclick="returnToButtons()">&lt; Back</h4>
+                </div>
+                   <div class="sentText"><h3>Previous Games Scores</h3></div>                        
+                    <div id="showAllGames"></div>
+            </div>
+            
+            <div id="creategroupgames" class="d-none housing">
+                <div class="text-left pl-1 goBackBut">
+                    <h4 onclick="returnToButtons()">&lt; Back</h4>
+                </div>
+                   <div class="sentText"><h3>Create Group Game</h3></div>                        
+                    <div id="sh">
+                        <div><div class="btn multBut btn-lg" onclick="inviteFriend()">One on One</div></div>
+                        <div><div class="btn multBut btn-lg" id="instructorled" onclick="createcoorindatorled()">Co-ordinator led</div></div>
+                        <div><div class="btn multBut btn-lg" id="multipleplayers" onclick="createmultipleplayer()">Multiple players</div></div>
+                    </div>
+
+            </div>
+        </div>
+        
+        
+        <div id="gameScreen" class="d-none screen pt-3 mt-3">
+            <input type="hidden" id="correctAnswer">
+            <div id="prevCont" class="hiddenCont"></div>
+            <div id="playersCont" class="hiddenCont"></div>
+            <div class="container-fluid">
+		      <div class="jumbotron myjumbo">
+			     <div class="row eachRowIns">
+                    <div id="scoreBoard" class="container-fluid">
+                        <span class="pageText">Score Board</span>
+                    <div class="row" id="boardSpans">
+                        <div class="col-56 pr-0 pl-0 mr-0 borders">
+                            <div class="progress player1">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="innerB">
+                                <i class="fas fa-user-circle"></i>
+                                <span id="player1">Player 1: </span>
+                                <span id="player1Score" class="score text-primary">0</span>
+                            </div>
+                        </div>
+                        <div class="col-56 col-56-2 pr-0 pl-0 ml-0 borders">
+                            <div class="progress player2" style="right: 0;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="innerB text-right">
+                                <span id="player2Score" class="score mr-0 text-success">0</span> 
+                                <span id="player2">:Player 2</span>
+                                <i class="far fa-user-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+                        <!--<div class="text-center" id="boardSpans">
+                            <span id="player1">Player 1: </span>
+                            <span id="player1Score" class="score">0</span>
+                            <span id="player2Score" class="score">0</span> 
+			                 <span id="player2">Player 2: </span>
+                        </div>-->
+                    </div>
+                  </div>
+                </div>
+            </div>
+            
+            <div class="container-fluid">
+		      <div class="jumbotron myjumbo">
+			     <div class="row eachRowIns">
+                    <div id="words" class="container-fluid">
+                        <div class="text-center">
+                            <button id="participants" class="btn btn-primary btn-sm d-none" onclick="showParticipants()">Show Player List</button>
+                            <button id="prevWords" class="btn btn-primary btn-sm" onclick="prevCont()">Show Previous words</button>
+                        </div>
+                        
+                        <div id="synonymsMPar" class="d-none">
+                            <div class="pageText" id="clueText">Possible Clues</div>
+                            <div id="synonymsM" class="text-center"></div>
+                        </div>
+                        <span class="pageText">New Word</span>
+                        <div class="row">
+                            <div class="col-9">
+                                <div id="theWord" class="text-center"></div>
+                            </div>
+                            <div class="col-3">
+                                <button type="button" class="btn rounded-circle butCent butCentBig" id="shuffler" onclick="shuffling()">
+                                    <i class="fas fa-random"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                  </div>
+                </div>
+            </div>
+            
+            
+            <div class="container-fluid">
+		      <div class="jumbotron myjumbo">
+			     <div class="row eachRowIns">
+                    <div id="buttonss" class="container-fluid">
+                        <div id="typeHere" class="row">
+                            <div class="col-12">
+                                <small class="text-dark">Your text goes below</small>
+                    <div class="text-center float-right butHelp butHelpPar">
+                        <span style="font-size: 0.8em;font-weight: 700;">Use Help - 50</span>
+						<button class="btn btn-danger rounded-circle butCentHelp mr-2" onclick="onlineClue()">
+							<i class="fas fa-coins"></i>
+						</button>
+					</div>
+                            <div type="text" id="typer"></div>
+                            <div class="text-left text-danger container-fluid warn">Max of 8 letters allowed</div>
+                        </div>
+                        
+                        <div id="alphass" class="text-center mt-1 container">
+                        
+                        </div>
+                        
+                        <div id="specButHolder" class="mt-1 text-center container">
+                        
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            
+        </div>
+        <div id="alphas" class="text-center container">
+            <div id="keyboardText">Type with Keyboard</div>        
+        </div>
+    </div>
+    
+    <audio src="sounds/correct.mp3" class="d-none" id="rightSound"></audio>
+<audio src="sounds/wrongg.mp3" class="d-none" id="wrongSound"></audio>
+<audio src="sounds/click.mp3" class="d-none" id="clickSound"></audio>
+<audio src="sounds/timer.mp3" class="d-none" id="timerSound" loop></audio>
+<audio src="sounds/message.mp3" class="d-none" id="messageSound"></audio>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <title>Unscramble</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/driverjs.js"></script>
+    <!--<script src="fontawesome/fontawesome.min.js"></script>-->
+    <script src="js/json.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/joint.js"></script>
+    <script src="js/anime.min.js"></script>
+    <script src="cordova.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/driverjs.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/joint.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    
+    </head>
+      
+<body>
+<div id="animScreen">
+    <div class="bg-triangle-L"></div>
+    <div id="animPar">
+            <div class="text-center" style="margin-bottom: -3px;">
+                <span class="text chalk" id="logo"></span>
+                
+            </div>
+            
+            <div id="loaderPar">
+                <div id="loader"></div>
+            </div>
+        </div>
+   </div>
+    
+    <div id="settingsPage">
+        <div class="bg-triangle-T" style="width: 100%;"></div>
+        <div class="bg-triangle-B" style="width: 100%;"></div>
+            <div class="settingsSpan" id="settingsHeader">
+                <span>Settings</span>
+                <div id="closeSettings" onclick="toggleSettings()"><i>&lt;&lt; Close &lt;&lt;</i></div>
+            </div>
+            
+        <div class="settingsLine text-center mt-3">
+            <button class="tour" onclick="generateTourHome();">Game Walkthrough</button>
+        </div>
+        
+             <div class="settingsLine row mt-3">
+                <div class="col-8"><span class="settingsTag">Dark Theme</span></div>
+                <div class="col-4 text-right">
+                     <label class="switch" id="switchLight">
+                        <input type="checkbox" id="checkLight">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="settingsLine row mt-3">
+                <div class="col-8"><span class="settingsTag">Skip Passed</span></div>
+                <div class="col-4 text-right">
+                    <label class="switch" id="switchPassed">
+                        <input type="checkbox" id="checkPassed">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        
+            <div class="settingsLine row mt-3">
+                <div class="col-8"><span class="settingsTag">Sound</span></div>
+                <div class="col-4 text-right">
+                    <label class="switch" id="switchSound">
+                        <input type="checkbox" id="checkSound">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            
+        <div class="settingsLine bottomSettingsLine row mt-3">
+            <div class="settingsTag col-12">Please share</div>
+        <div class="col-12 share">
+                    <!--<div class="table">
+                        <div class="table-cell middleHeight">-->
+                            <i class="fab fa-facebook-square text-primary" onclick="window.plugins.socialsharing.shareViaFacebook('Check out this unscramble game, so much fun to play', null, 'https://gods1son.github.io')"></i>
+                            <i class="fab fa-instagram text-danger" onclick="window.plugins.socialsharing.shareViaInstagram('Check out this unscramble game, so much fun to play', null , 'https://gods1son.github.io')"></i>
+                            <i class="fab fa-whatsapp-square text-success" onclick="window.plugins.socialsharing.shareViaWhatsApp('Check out this unscramble game, so much fun to play', null , 'https://gods1son.github.io')"></i>
+                            <i class="fab fa-twitter-square text-info" onclick="window.plugins.socialsharing.shareViaTwitter('Check out this unscramble game, so much fun to play', null , 'https://gods1son.github.io')"></i>
+                            <i class="fas fa-sms text-light" onclick="window.plugins.socialsharing.shareViaSMS('Check out this unscramble game, so much fun to play https://gods1son.github.io', null, null, null)"></i>
+                       <!-- </div>
+                    </div>-->
+                </div>
+        </div>
+            <!--<div class="bottomSettingsLine">
+            
+                <button class="resetGame" onclick="generateTour2();">Show me how</button>
+            </div>-->
+            
+        </div>
+    
+    <div class="container-fluid position-relative header d-none">
+        <div class="text-center">
+            <div class="" id="logoHead">Unscramble</div>
+        </div>
+        
+        <div class="container-fluid headB blue">
+            <div class="text-left float-left" id="menuBar" style="position: relative;" onclick="toggleSettings()">
+                    <i class="fas fa-bars"></i>
+					
+			</div>
+            
+            <div class="text-right float-right">
+                <div id="coinNew" class="text-right">
+                    <i class="fas fa-coins darkorange"></i>
+                    <span class="chalk getCoins">0</span>
+                </div>
+            </div>
+        </div>
+        
+       
+    </div>
+     
+    
+    <div id="mainContent" class="d-none pt-1">
+        <div class="bg-triangle-L"></div>
+        <div class="text-center mb-2">
+            <button class="btn myButLg" onclick="window.location.href='multiplayer.html'">Multiplayer</button>
+        </div>
+        
+       <div class="container-fluid" id="levelPar">
+            
+        </div>  
+    </div>
+    <audio src="sounds/correct.mp3" class="d-none" id="rightSound"></audio>
+<audio src="sounds/wrongg.mp3" class="d-none" id="wrongSound"></audio>
+<audio src="sounds/click.mp3" class="d-none" id="clickSound"></audio>
+    
+</body>
+</html>
